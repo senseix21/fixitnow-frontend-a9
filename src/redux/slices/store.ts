@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { reducer } from '@/redux/rootReducer'
+import { reducer } from '@/redux/slices/rootReducer'
+import { baseApi } from '@/redux/api/baseApi'
 
 export const store = configureStore({
-    reducer
+    reducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 
