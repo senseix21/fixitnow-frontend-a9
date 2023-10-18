@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/ui/navbar'
 import Footer from '@/components/ui/footer'
+import Providers from '@/lib/Providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,12 +18,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div data-theme='garden'>
-      <Navbar />
-      <div className='h-screen'>
-        {children}
-      </div>
-      <Footer />
-    </div>
+    <Providers>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </Providers>
+
   )
 }
