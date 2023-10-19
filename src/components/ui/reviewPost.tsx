@@ -29,7 +29,7 @@ const ReviewPost = ({ serviceId }: IProps) => {
         setRating(index + 1);
     }
     console.log(`rating`, newRating);
-    const user: ILoginResponse | unknown = getUserInfo();
+    const user: ILoginResponse | any = getUserInfo();
 
 
     const {
@@ -41,7 +41,7 @@ const ReviewPost = ({ serviceId }: IProps) => {
             comment: data.comment,
             rating: newRating,
             serviceId: serviceId,
-            userId: user?.userId
+            userId: user?.userId!
         }
         console.log(reviewData, data);
         // Additional logic to handle the form data
