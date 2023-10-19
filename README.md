@@ -1,37 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FixItNow Frontend
+
+Welcome to the FixItNow frontend repository. This frontend application is part of the FixItNow project, an on-demand home repair and maintenance service platform. It connects users with local service providers for quick and reliable home fixes, renovations, and maintenance tasks.
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Technologies](#technologies)
+- [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Project Overview
+
+FixItNow is your one-stop platform for all things related to home repair and maintenance. It offers a user-friendly interface for homeowners and renters to find and book local service providers for various services.
+
+## Key Features
+
+1. **Service Categories:** Browse and book a wide range of home repair and maintenance services.
+2. **Instant Booking:** Request immediate service or schedule appointments for planned tasks.
+3. **Service Provider Ratings:** Rate and review service providers to maintain quality.
+4. **Photo Upload:** Upload photos for more context and accurate service.
+
+## Technologies
+
+The FixItNow frontend is built using the following technologies:
+
+- Nextjs
+- Tailwind CSS
+- Other relevant technologies and libraries
 
 ## Getting Started
 
-First, run the development server:
+To get the FixItNow frontend up and running on your local machine, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure you have the following installed:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js
+- NPM or Yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Installation
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   git clone https://github.com/yourusername/fixitnow-frontend.git
+Change to the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+bash
+Copy code
+cd fixitnow-frontend
+Install dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# fixitnow-frontend-a9
+bash
+Copy code
+npm install
