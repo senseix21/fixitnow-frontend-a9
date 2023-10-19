@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import whyUs from '@/assets/whyus.png';
+import whyUs from '@/assets/whyUs.png';
 
 const WhyUs = () => {
     return (
