@@ -1,64 +1,81 @@
-import { IMeta } from "@/types";
+import { IMeta, Service } from "@/types";
 import { baseApi } from "./baseApi";
+import { tagTypes } from "../tagtypes";
 
 const SERVICE_URL = "/services";
 
 export const serviceApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
+
         // get all
         services: build.query({
             query: (arg: Record<string, any>) => {
+                let url = SERVICE_URL;
+                if (arg.categoryId) {
+                    url += `?categoryId=${arg.categoryId}`;
+                } else if (arg.search) {
+                    url += `?search=${arg.search}`;
+                }
                 return {
-                    url: SERVICE_URL,
+                    url,
                     method: "GET",
-                    params: arg,
                 };
             },
-            transformResponse: (response: any, meta: IMeta) => {
+            transformResponse: (response: Service[], meta: IMeta) => {
                 return {
-                    courses: response,
+                    services: response,
                     meta,
                 };
             },
-            providesTags: ['services'],
+            providesTags: [tagTypes.SERVICE],
         }),
-        //         // get single
-        //         course: build.query({
-        //             query: (id: string) => ({
-        //                 url: `${COURSE_URL}/${id}`,
-        //                 method: "GET",
-        //             }),
-        //             providesTags: [tagTypes.course],
-        //         }),
-        //         // create
-        //         addCourse: build.mutation({
-        //             query: (data) => ({
-        //                 url: COURSE_URL,
-        //                 method: "POST",
-        //                 data,
-        //             }),
-        //             invalidatesTags: [tagTypes.course],
-        //         }),
-        //         // update
-        //         updateCourse: build.mutation({
-        //             query: (data) => ({
-        //                 url: `${COURSE_URL}/${data.id}`,
-        //                 method: "PATCH",
-        //                 data: data.body,
-        //             }),
-        //             invalidatesTags: [tagTypes.course],
-        //         }),
-        //         // delete
-        //         deleteCourse: build.mutation({
-        //             query: (id) => ({
-        //                 url: `${COURSE_URL}/${id}`,
-        //                 method: "DELETE",
-        //             }),
-        //             invalidatesTags: [tagTypes.course],
-        //         }),
+
+        // get single
+        service: build.query({
+            query: (id: any) => ({
+                url: `${SERVICE_URL}/${id}`,
+                method: "GET",
+            }),
+            transformResponse: (response: Service) => {
+                return {
+                    services: response,
+                };
+            },
+            providesTags: [tagTypes.SERVICE],
+        }),
+        // create
+        addService: build.mutation({
+            query: (data) => ({
+                url: SERVICE_URL,
+                method: "POST",
+                data,
+            }),
+            invalidatesTags: [tagTypes.SERVICE],
+        }),
+        // update
+        updateService: build.mutation({
+            query: (data) => ({
+                url: `${SERVICE_URL}/${data.id}`,
+                method: "PATCH",
+                data: data.body,
+            }),
+            invalidatesTags: [tagTypes.SERVICE],
+        }),
+        // delete
+        deleteService: build.mutation({
+            query: (id) => ({
+                url: `${SERVICE_URL}/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: [tagTypes.SERVICE],
+        }),
     }),
 });
 
 export const {
-    useServicesQuery
+    useServicesQuery,
+    useAddServiceMutation,
+    useDeleteServiceMutation,
+    useUpdateServiceMutation,
+    useServiceQuery
 } = serviceApi

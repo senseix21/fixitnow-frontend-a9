@@ -1,4 +1,5 @@
 'use client'
+import { getUserInfo, storeUserInfo } from '@/services/auth.services';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -21,6 +22,7 @@ const Loginform = () => {
     const router = useRouter();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        getUserInfo()
         try {
             const response = await fetch('https://fixitnow-backend-a9-e0lz8ew1v-senseix21.vercel.app/api/v1/auth/signin', {
                 method: 'POST',
@@ -32,7 +34,7 @@ const Loginform = () => {
                 success();
                 const data = await response.json();
                 console.log(data);
-                localStorage.setItem('token', data.token); // Store the token in localStorage
+                storeUserInfo({ accessToken: data?.token });
             } else {
                 error();
                 console.error('Login failed');

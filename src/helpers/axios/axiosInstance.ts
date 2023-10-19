@@ -1,7 +1,7 @@
 
 import { authKey } from "@/constants/sotrageKey";
 import { IGenericErrorResponse, ResponseSuccessType } from "@/types";
-import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
+import { getFromLocalStorage } from "@/utils/local-storage";
 import axios from "axios";
 
 const instance = axios.create();
@@ -28,25 +28,26 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
     //@ts-ignore
-    function (response) {
+    (response) => {
         const responseObject: ResponseSuccessType = {
+            statusCode: response?.status,
             data: response?.data?.data,
             meta: response?.data?.meta,
         };
         return responseObject;
     },
-    async function (error) {
+    (error) => {
         if (error?.response?.status === 403) {
         } else {
-            const responseObject: IGenericErrorResponse = {
+            const errorResponse: IGenericErrorResponse = {
+                success: error?.response?.data?.success || false,
                 statusCode: error?.response?.data?.statusCode || 500,
-                message: error?.response?.data?.message || "Something went wrong",
-                errorMessages: error?.response?.data?.message,
+                message: error?.response?.data?.message || error?.response?.message || "Something went wrong",
+                errorMessages: error?.response?.data?.errorMessages || [],
             };
-            return responseObject;
+            return { error: errorResponse };
         }
 
-        // return Promise.reject(error);
     }
 );
 
