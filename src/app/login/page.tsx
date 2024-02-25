@@ -9,11 +9,7 @@ const LoginPage = (): React.JSX.Element => {
         <>
             <Navbar />
             <div className="min-h-screen bg-base-200">
-                <div className="hero-content">
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <Loginform />
-                    </div>
-                </div>
+                <Loginform />
             </div>
             <Footer />
         </>

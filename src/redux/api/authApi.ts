@@ -2,6 +2,7 @@ import { tagTypes } from "../tagtypes";
 import { baseApi } from "./baseApi"
 const AUTH_URL = "/auth";
 
+
 export const authApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         userLogin: build.mutation({
@@ -20,6 +21,7 @@ export const authApi = baseApi.injectEndpoints({
             }),
         }),
     }),
+    overrideExisting: true,
 
 })
 

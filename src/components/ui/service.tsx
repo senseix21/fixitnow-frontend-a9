@@ -15,6 +15,7 @@ const ServiceComponent = ({ services }: { services: Service[] }) => {
                 services?.map((service, key) =>
                     <div key={key} className='mx-auto bg-primary text-black mb-10 rounded-md'>
                         <Image className='rounded-md h-60' src='https://i.ibb.co/phnQFmq/industrial.png' width={300} height={200} alt="" />
+                        <div className="badge rounded-sm p-2 mx-2">{service?.status}</div>
                         <small className='flex px-2 py-1'>
                             <span className='flex items-center' >
                                 <span className='text-red-600 font-bold mx-1'>{service?.Review[0]?.rating}</span><span className='text-orange-600 flex'><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /></span>

@@ -1,53 +1,54 @@
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tagtypes";
 
-const REVIEW_URL = "/review";
+const FEEDBACK_URL = "/feedback";
 
-export const reviewApi = baseApi.injectEndpoints({
+export const feedbackApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         // get all
-        reviews: build.query({
+        feedbacks: build.query({
             query: (arg: Record<string, any>) => {
                 return {
-                    url: REVIEW_URL,
+                    url: FEEDBACK_URL,
                     method: "GET",
                     params: arg,
                 };
             },
 
-            providesTags: [tagTypes.REVIEW],
+            providesTags: [tagTypes.FEEDBACK],
         }),
         // get single by service id
-        review: build.query({
+        feedback: build.query({
             query: (id: string) => ({
-                url: `${REVIEW_URL}/service/${id}`,
+                url: `${FEEDBACK_URL}/service/${id}`,
                 method: "GET",
             }),
-            providesTags: [tagTypes.REVIEW],
+            providesTags: [tagTypes.FEEDBACK],
         }),
         // create
-        addReview: build.mutation({
+        addfeedback: build.mutation({
             query: (data) => ({
-                url: REVIEW_URL,
+                url: FEEDBACK_URL,
                 method: "POST",
                 data,
             }),
-            invalidatesTags: [tagTypes.REVIEW],
+            invalidatesTags: [tagTypes.FEEDBACK],
         }),
 
         // delete
-        deleteReview: build.mutation({
+        deletefeedback: build.mutation({
             query: (id) => ({
-                url: `${REVIEW_URL}/${id}`,
+                url: `${FEEDBACK_URL}/${id}`,
                 method: "DELETE",
             }),
-            invalidatesTags: [tagTypes.REVIEW],
+            invalidatesTags: [tagTypes.FEEDBACK],
         }),
     }),
 });
 
 export const {
-    useAddReviewMutation,
-    useDeleteReviewMutation,
-    useReviewsQuery
-} = reviewApi
+    useAddfeedbackMutation,
+    useDeletefeedbackMutation,
+    useFeedbackQuery,
+    useFeedbacksQuery
+} = feedbackApi

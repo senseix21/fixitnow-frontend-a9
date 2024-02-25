@@ -1,4 +1,4 @@
-import { Cart, Category, IMeta } from "@/types";
+import { Cart, ICategory, IMeta } from "@/types";
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tagtypes";
 
@@ -14,11 +14,7 @@ export const cartApi = baseApi.injectEndpoints({
                     method: "GET",
                 };
             },
-            transformResponse: (response: Cart[]) => {
-                return {
-                    carts: response,
-                };
-            },
+
             providesTags: [tagTypes.CART],
         }),
 

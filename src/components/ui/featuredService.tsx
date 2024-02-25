@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ServiceComponent from './service';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useServicesQuery } from '@/redux/api/serviceApi';
-import LoadingPage from '@/app/laoding';
 import { Service } from '@/types';
 
 type FormValues = {
@@ -19,17 +18,18 @@ const FeaturedService: React.FC = () => {
         console.log(search);
     };
 
-    const { data, isLoading } = useServicesQuery({ search: search });
+    const { data, isSuccess } = useServicesQuery({ status: 'AVAILABLE' });
+    console.log(data, isSuccess);
+    console.log(data)
 
-    if (isLoading) return <LoadingPage />;
-    const services: Service[] | undefined = data?.services.slice(0, 6) || []; // Provide a default empty array
+    const services: Service[] = data?.data.slice(0, 6) || []; // Provide a default empty array
 
     return (
         <div>
             <div>
                 <div className="lg:flex justify-around items-center lg:my-10">
                     <div className="max-w-md">
-                        <h1 className="text-4xl font-bold text-primary-focus">Our Featured Categories</h1>
+                        <h1 className="text-4xl font-bold text-primary-focus">Our Featured Services</h1>
                     </div>
                     <form className="join" onSubmit={handleSubmit(onSubmit)}>
                         <div>

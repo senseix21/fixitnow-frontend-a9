@@ -1,18 +1,17 @@
 export interface IMeta {
-    limit: number;
     page: number;
+    size: number;
     total: number;
+    totalPage: number;
 }
 
 export type ResponseSuccessType = {
-    statusCode: number;
     data: any;
     meta?: IMeta;
 };
 
 export type IGenericErrorResponse = {
-    success: boolean;
-    statusCode: number;
+    success: Boolean;
     message: string;
     errorMessages: IGenericErrorMessage[];
 };
@@ -53,7 +52,7 @@ export interface User {
     UserFeedback: UserFeedback[];
 }
 
-export interface Category {
+export interface ICategory {
     id: string;
     name: string;
     service: Service[];
@@ -66,7 +65,8 @@ export interface Service {
     price: number;
     image: string;
     categoryId: string;
-    category: Category;
+    status: boolean;
+    category: ICategory;
     Booking: Booking[];
     Review: Review[];
     Cart: Cart[];

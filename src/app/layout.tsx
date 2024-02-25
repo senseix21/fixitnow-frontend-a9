@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className='px-10'>{children}</body>
+        <body>{children}</body>
       </html>
     </Providers>
 

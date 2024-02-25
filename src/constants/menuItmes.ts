@@ -2,91 +2,73 @@
 
 export interface MenuItem {
     title: string;
+    link: string;
     subItems?: MenuItem[];
 }
 
 export const userMenuItems: MenuItem[] = [
     {
         title: 'Profile',
-        subItems: [
-            { title: 'Edit Profile' },
-            { title: 'View Profile' },
-        ],
+        link: '/profile'
+
+    },
+    {
+        title: 'Edit Profile',
+        link: '/editProfile'
+
+
     },
     {
         title: 'Bookings',
-        subItems: [
-            { title: 'Make a Booking' },
-            { title: 'Track Booking Status' },
-            { title: 'Cancel Booking' },
-        ],
+        link: '/bookings'
+
+
     },
+
     {
-        title: 'Notifications (Optional)',
-        subItems: [
-            { title: 'Booking Confirmations' },
-            { title: 'Reminders' },
-            { title: 'Updates' },
-        ],
-    },
-    {
-        title: 'Dashboard',
-        subItems: [
-            { title: 'Booking History' },
-        ],
+        title: 'Service History',
+        link: '/serviceHistory'
+
+
     },
     {
         title: 'Feedback',
-        subItems: [
-            { title: 'Submit Comments' },
-            { title: 'Submit Suggestions' },
-        ],
+        link: '/feedback'
     },
 ];
 
 
 export const adminMenuItems: MenuItem[] = [
-    { title: 'Dashboard' },
-    { title: 'Manage Users' },
-    {
-        title: 'Manage Services',
-        subItems: [
-            { title: 'Add Service' },
-            { title: 'Edit Service' },
-            { title: 'Remove Service' },
-        ],
-    },
-    {
-        title: 'Booking Management',
-        subItems: [
-            { title: 'View Bookings' },
-            { title: 'Manage Bookings' },
-        ],
-    },
-    { title: 'Content Management' },
-    { title: 'Profile Management' },
+    { title: 'Dashboard', link: '/dashboard' },
+    { title: 'Manage Users', link: '/manageUsers' },
+
+    { title: 'Add Service', link: '/addService' },
+    { title: 'Edit Service', link: '/editService' },
+    { title: 'Remove Service', link: '/removeService' },
+
+
+    { title: 'View Bookings', link: '/viewBookings' },
+    { title: 'Manage Bookings', link: '/manageBookings' },
+
+    { title: 'Content Management', link: '/contentManagement' },
+    { title: 'Profile ', link: '/profile' },
+    { title: 'Edit Profile', link: '/editProfile' },
 ];
 
-
 export const superAdminMenuItems: MenuItem[] = [
-    { title: 'Dashboard' },
-    {
-        title: 'Manage Admins',
-        subItems: [
-            { title: 'Add Admin' },
-            { title: 'Edit Admin' },
-            { title: 'Remove Admin' },
-        ],
-    },
-    {
-        title: 'Manage Roles',
-        subItems: [
-            { title: 'Add Role' },
-            { title: 'Edit Role' },
-            { title: 'Remove Role' },
-        ],
-    },
-    { title: 'Manage Users' },
+    { title: 'Dashboard', link: '/dashboard' },
 
-    { title: 'Profile Management' },
+    { title: 'Add Admin', link: '/addAdmin' },
+    { title: 'Edit Admin', link: '/editAdmin' },
+    { title: 'Remove Admin', link: '/removeAdmin' },
+
+
+    { title: 'Add Role', link: '/addRole' },
+    { title: 'Edit Role', link: '/editRole' },
+    { title: 'Remove Role', link: '/removeRole' },
+
+
+    { title: 'Manage Users', link: '/manageUsers' },
+    { title: 'Profile ', link: '/profile' },
+    { title: 'Edit Profile', link: '/editProfile' },
 ];

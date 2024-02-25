@@ -15,12 +15,7 @@ export const categoryApi = baseApi.injectEndpoints({
                     params: arg,
                 };
             },
-            transformResponse: (response: Category[], meta: IMeta) => {
-                return {
-                    categories: response,
-                    meta,
-                };
-            },
+
             providesTags: [tagTypes.CATEGORY],
         }),
         // get single
