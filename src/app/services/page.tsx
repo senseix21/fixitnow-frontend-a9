@@ -27,14 +27,16 @@ const ServicesPage: React.FC = () => {
     const query = searchParams.get('categoryId');
 
     const { register, watch, setValue } = useForm<FormValues>();
-    const { data } = useServicesQuery({
+    const searchQuery = {
         search: watch('search') || '',
         categoryId: watch('categoryId') || query || '',
         minPrice: parseFloat(watch('minPrice')) || 0,
-        maxPrice: parseFloat(watch('maxPrice')) || 1000,
+        maxPrice: parseFloat(watch('maxPrice')) || 100000,
         size: watch('size') || '',
         page: page || 1
-    });
+    }
+    console.log(searchQuery)
+    const { data } = useServicesQuery(searchQuery);
 
     // pagination handler functions
     const handlePreviousPage = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -51,7 +53,7 @@ const ServicesPage: React.FC = () => {
         }
     };
 
-
+    console.log(data);
 
     const { data: services, meta } = data || { data: [], meta: {} };
 

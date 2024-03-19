@@ -18,7 +18,7 @@ const Navbar = () => {
     const isUserLoggedIn = !!user;
 
     return (
-        <div className="navbar bg-base-100" suppressHydrationWarning data-theme='winter'>
+        <div className="navbar bg-base-100" suppressHydrationWarning data-theme='aqua'>
             <div className="navbar-start" >
                 <ToastContainer />
                 {/* Dropdown menu */}
@@ -33,12 +33,12 @@ const Navbar = () => {
                         <li><a href='/services'>Services</a></li>
                         <li><a href='/blogs'>Blogs</a></li>
                         <li><a href='/contact'>Contact</a></li>
-                        {!isUserLoggedIn && (
+                        {/* {!isUserLoggedIn && (
                             <>
                                 <li><a href='/login'>Sign In</a></li>
                                 <li><a href='/signup'>Sign Up</a></li>
                             </>
-                        )}
+                        )} */}
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">
@@ -52,12 +52,12 @@ const Navbar = () => {
                     <li><a href='/services'>Services</a></li>
                     <li><a href='/blogs'>Blogs</a></li>
                     <li><a href='/contact'>Contact</a></li>
-                    {!isUserLoggedIn && (
+                    {/* {!isUserLoggedIn && (
                         <>
                             <li><a href='/login'>Sign In</a></li>
                             <li><a href='/signup'>Sign Up</a></li>
                         </>
-                    )}
+                    )} */}
                 </ul>
             </div>
             {isUserLoggedIn ? (

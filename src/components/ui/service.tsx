@@ -9,12 +9,13 @@ import { BsFillStarFill } from 'react-icons/bs';
 
 
 const ServiceComponent = ({ services }: { services: Service[] }) => {
+    console.log(services);
     return (
         <div className='grid lg:grid-cols-3 gap-5 lg:mx-12'>
             {
                 services?.map((service, key) =>
                     <div key={key} className='mx-auto bg-primary text-black mb-10 rounded-md'>
-                        <Image className='rounded-md h-60' src='https://i.ibb.co/phnQFmq/industrial.png' width={300} height={200} alt="" />
+                        <Image className='rounded-md h-60' src={service?.image} width={300} height={200} alt="" />
                         <div className="badge rounded-sm p-2 mx-2">{service?.status}</div>
                         <small className='flex px-2 py-1'>
                             <span className='flex items-center' >

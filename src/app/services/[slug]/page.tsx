@@ -14,53 +14,34 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 import { useAddTobookingMutation } from '@/redux/api/bookingApi';
+import Image from 'next/image';
+import { error, success } from '@/components/ui/toasts';
+import { IGenericResponse } from '../../../../interfaces/common';
 
 
 
 const ServicePage = ({ params }: { params: { slug: string } }) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const [createBooking] = useAddTobookingMutation({})
-
-    const success = () => toast("Yay, service added to cart successfully!");
-    const bookingSuccess = () => toast("Yay, Booking scheduled successfully!");
 
     const [addTocartService] = useAddTocartMutation();
     const id: string = params.slug;
-    const { data, isLoading } = useServiceQuery(id);
+    const { data } = useServiceQuery(id);
 
-    const service: Service | undefined = data?.services;
+    const service: Service | undefined = data?.data;
+    console.log(service)
 
     const addTocart = async () => {
-        const res = await addTocartService({
+        const res: any = await addTocartService({
             serviceId: params.slug,
         });
-        console.log(res);
-        if (res !== undefined) {
-            success();
+        console.log(res.error.message);
+        if (res?.data) {
+            success(res?.data?.message);
+        } else {
+            error(res?.error?.message);
         }
     }
 
-    const handleDateChange = (date: Date | null) => {
-        setSelectedDate(date);
-    };
-
-    const handleBookClick = async () => {
-        if (selectedDate) {
-            // Format the selected date
-            const formattedDate = format(selectedDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
-            const res = await createBooking({
-                date: formattedDate,
-                serviceId: params.slug,
-            });
-            console.log(res);
-            if (res) {
-                bookingSuccess();
-            }
-        }
-
-
-    };
+    3
 
 
 
@@ -68,50 +49,108 @@ const ServicePage = ({ params }: { params: { slug: string } }) => {
         <>
             <Navbar />
             <ToastContainer />
-
-            <div className='grid lg:grid-cols-5 lg:mx-auto lg:m-10'>
-                <div className="lg:col-span-3">
-                    <h1 className='lg:text-4xl text-primary font-bold text-left'>{service?.title}</h1>
-                    <p className='text-left mt-5 px-2'>{service?.description}</p>
-
-                    <p className='font-semibold text-left lg:mt-5'>Category: <span className='text-primary'>{service?.category?.name}</span></p>
-                    <div className='lg:mt-10'>
-                        <h3 className='text-xl text-secondary text-left my-2'>Reviews:</h3>
-                        <div className='grid lg:grid-cols-2 gap-5'>
-                            {service?.Review?.map((review, index) => (
-                                <ReviewItem key={index} review={review} />
-                            ))}
-                        </div>
-
-                        {/* review post */}
-                        <ReviewPost serviceId={params.slug} />
-                    </div>
-                </div>
-
-                <div className="lg:col-span-2  mx-auto">
-                    <div className="card lg:w-96 bg-base-100 shadow-xl sticky top-15 ">
-                        <figure><img src={service?.image} alt="Shoes" height={500} width={500} /></figure>
-                        <div className="card-body">
-                            <h2 className="text-3xl font-bold text-left"> ${service?.price}</h2>
-                            <div className="card-actions mt-2">
-                                <DatePicker
-                                    selected={selectedDate}
-                                    onChange={handleDateChange}
-                                    dateFormat="yyyy-MM-dd"
-                                    placeholderText="Select a Date"
-                                    className='input select input-secondary text-xl'
-                                />
-                                <button onClick={handleBookClick} className="btn btn-primary w-full">
-                                    Book Now
-                                </button>
-                                <button onClick={addTocart} className="btn btn-outline w-full">Add to cart</button>
-
+            <section className="text-gray-600 body-font overflow-hidden" data-theme='light'>
+                <div className="container px-5 py-24 mx-auto">
+                    <div className="lg:w-4/5 mx-auto flex flex-wrap">
+                        <img
+                            alt="ecommerce"
+                            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+                            src={service?.image}
+                        />
+                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{service?.title}</h1>
+                            <div className="flex mb-4">
+                                <span className="flex items-center">
+                                    {[...Array(4)].map((_, index) => (
+                                        <svg
+                                            key={index}
+                                            fill="currentColor"
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            className="w-4 h-4 text-indigo-500"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                        </svg>
+                                    ))}
+                                    <span className="text-gray-600 ml-3">4 Reviews</span>
+                                </span>
+                                <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                                    <a className="text-gray-500">
+                                        <svg
+                                            fill="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            className="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                                        </svg>
+                                    </a>
+                                    <a className="text-gray-500">
+                                        <svg
+                                            fill="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            className="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                                        </svg>
+                                    </a>
+                                    <a className="text-gray-500">
+                                        <svg
+                                            fill="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            className="w-5 h-5"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                                        </svg>
+                                    </a>
+                                </span>
+                            </div>
+                            <p className="leading-relaxed">
+                                {service?.description}
+                            </p>
+                            <p className="leading-relaxed mb-4">{service?.description}</p>
+                            <div className="flex border-t border-gray-200 py-2">
+                                <span className="text-gray-500">Duration</span>
+                                <span className="ml-auto text-gray-900">1 week</span>
+                            </div>
+                            <div className="flex border-t border-gray-200 py-2">
+                                <span className="text-gray-500">Status</span>
+                                <span className="ml-auto text-gray-900">{service?.status}</span>
+                            </div>
+                            <div className="flex border-t border-b mb-6 border-gray-200 py-2">
+                                <span className="text-gray-500">Price</span>
+                                <span className="ml-auto text-gray-900">$ {service?.price}</span>
                             </div>
 
+                            <div className="flex">
+                                <div className=" w-full lg:h-auto">
+                                    <button className="btn btn-primary w-full mb-2">
+                                        Book Now
+                                    </button>
+                                    <button onClick={addTocart} className="btn btn-outline w-full">
+                                        Add to Wishlist
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+
+
+            {/*  */}
             <Footer />
 
         </>

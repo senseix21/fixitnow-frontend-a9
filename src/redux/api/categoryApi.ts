@@ -1,4 +1,3 @@
-import { Category, IMeta } from "@/types";
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tagtypes";
 
@@ -29,7 +28,7 @@ export const categoryApi = baseApi.injectEndpoints({
         // create
         addCategory: build.mutation({
             query: (data) => ({
-                url: CATEGORY_URL,
+                url: `${CATEGORY_URL}/create-category`,
                 method: "POST",
                 data,
             }),

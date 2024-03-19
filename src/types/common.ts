@@ -65,7 +65,7 @@ export interface Service {
     price: number;
     image: string;
     categoryId: string;
-    status: boolean;
+    status: String;
     category: ICategory;
     Booking: Booking[];
     Review: Review[];

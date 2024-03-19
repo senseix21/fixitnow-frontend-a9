@@ -42,17 +42,16 @@ export const adminMenuItems: MenuItem[] = [
     { title: 'Dashboard', link: '/dashboard' },
     { title: 'Manage Users', link: '/manageUsers' },
 
+    { title: 'Add Category', link: '/addCategory' },
     { title: 'Add Service', link: '/addService' },
+    { title: 'Manage Services', link: '/manageService' },
     { title: 'Edit Service', link: '/editService' },
-    { title: 'Remove Service', link: '/removeService' },
 
 
-    { title: 'View Bookings', link: '/viewBookings' },
     { title: 'Manage Bookings', link: '/manageBookings' },
 
     { title: 'Content Management', link: '/contentManagement' },
     { title: 'Profile ', link: '/profile' },
-    { title: 'Edit Profile', link: '/editProfile' },
 ];
 
 export const superAdminMenuItems: MenuItem[] = [

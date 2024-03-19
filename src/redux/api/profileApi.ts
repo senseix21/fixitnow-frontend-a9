@@ -19,17 +19,17 @@ export const profileApi = baseApi.injectEndpoints({
             providesTags: [tagTypes.PROFILE],
         }),
 
-        // create
+        // get
         createProfile: build.mutation({
             query: (data) => ({
                 url: PROFILE_URL,
-                method: "POST",
+                method: "GET",
                 data,
             }),
             invalidatesTags: [tagTypes.PROFILE],
         }),
 
-        // delete
+        // update
         updateProfle: build.mutation({
             query: (id) => ({
                 url: `${PROFILE_URL}/${id}`,

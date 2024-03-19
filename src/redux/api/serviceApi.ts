@@ -47,7 +47,7 @@ export const serviceApi = baseApi.injectEndpoints({
         // create
         addService: build.mutation({
             query: (data) => ({
-                url: SERVICE_URL,
+                url: `${SERVICE_URL}/create-service`,
                 method: "POST",
                 data,
             }),

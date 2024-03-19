@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     console.log(user)
 
     return (
-        <div data-theme='light'>
+        <div data-theme='dark'>
             <Navbar />
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
