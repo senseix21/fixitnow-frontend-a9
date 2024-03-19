@@ -35,7 +35,7 @@ export const axiosBaseQuery = (
         return {
             error: {
                 success: false,
-                message: err?.response?.data?.message,
+                message: err?.response?.data,
                 errorMessage: 'An unexpected error occurred', // Provide a default error message
             },
         };

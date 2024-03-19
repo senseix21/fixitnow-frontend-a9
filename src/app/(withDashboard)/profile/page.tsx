@@ -7,7 +7,7 @@ import React from 'react';
 
 const ProfilePage = () => {
     const { data } = useProfilesQuery({});
-    const userData = data?.data || {} as User;
+    const userData = data?.data as any;
     console.log(userData)
     return (
         <div>
