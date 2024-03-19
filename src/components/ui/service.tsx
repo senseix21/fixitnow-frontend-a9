@@ -22,7 +22,7 @@ const ServiceComponent = ({ services }: { services: Service[] }) => {
                                 <span className='text-red-600 font-bold mx-1'>{service?.Review[0]?.rating}</span><span className='text-orange-600 flex'><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /><BsFillStarFill /></span>
                             </span>
                         </small>
-                        <Link href={`/category/`}><h2 className='text-left font-bold px-2'>{service.title}</h2></Link>
+                        <h2 className='text-left font-bold px-2'>{service.title}</h2>
                         <div className='flex items-center justify-between font-medium px-2'>
                             <small className='flex items-center'> {service?.category.name}</small>
                             <small></small>
