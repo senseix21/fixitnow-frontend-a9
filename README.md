@@ -4,6 +4,9 @@
 
 This is the frontend of **FixItNow**, a service request and repair management platform that allows users to easily book repair services, track progress, and manage appointments. This project is built with **Next.js** for the React framework, utilizing **Redux Toolkit** for state management, **Tailwind CSS** for styling, and **React Hook Form** with **Yup** for form validation.
 
+##Backend repo
+https://github.com/senseix21/FixitNow-backend-a9
+
 ## Features
 
 - **User Authentication:** JWT-based authentication and session management.
